@@ -10,15 +10,6 @@
 
 ZEEK_FORWARD_DECLARE_NAMESPACED(Expr, zeek::detail);
 
-namespace zeek {
-class Type;
-using TypePtr = IntrusivePtr<Type>;
-
-namespace detail {
-using ExprPtr = zeek::IntrusivePtr<Expr>;
-}
-}
-
 // Note that there are two kinds of attributes: the kind (here) which
 // modify expressions or supply metadata on types, and the kind that
 // are extra metadata on every variable instance.
@@ -45,7 +36,14 @@ enum [[deprecated("Remove in v4.1. Use zeek::detail::attr_tag instead.")]] attr_
 	NUM_ATTRS // this item should always be last
 };
 
-namespace zeek::detail {
+namespace zeek {
+
+class Type;
+using TypePtr = IntrusivePtr<Type>;
+
+namespace detail {
+
+using ExprPtr = zeek::IntrusivePtr<zeek::detail::Expr>;
 
 enum attr_tag {
 	ATTR_OPTIONAL,
@@ -175,7 +173,8 @@ protected:
 	bool global_var;
 };
 
-}
+} // namespace detail
+} // namespace zeek
 
 using Attr [[deprecated("Remove in v4.1. Use zeek::detail::Attr instead.")]] = zeek::detail::Attr;
 using Attributes [[deprecated("Remove in v4.1. Use zeek::detail::Attr instead.")]] = zeek::detail::Attributes;

@@ -397,7 +397,7 @@ int Plugin::HookLoadFile(const LoadType type, const std::string& file, const std
 	}
 
 std::pair<bool, zeek::ValPtr>
-Plugin::HookFunctionCall(const Func* func, Frame* parent,
+Plugin::HookFunctionCall(const Func* func, zeek::detail::Frame* parent,
                          zeek::Args* args)
 	{
 	val_list vlargs(args->size());

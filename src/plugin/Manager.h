@@ -275,7 +275,7 @@ public:
 	 * the method returns null.
 	 */
 	std::pair<bool, ValPtr>
-	HookCallFunction(const Func* func, Frame* parent, zeek::Args* args) const;
+	HookCallFunction(const Func* func, zeek::detail::Frame* parent, zeek::Args* args) const;
 
 	/**
 	 * Hook that filters the queuing of an event.
